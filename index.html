@@ -4,40 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🍸 SHOWBARMENOV - Подбор коктейлей</title>
-    <!-- Подключаем CSS -->
     <link rel="stylesheet" href="style.css">
-    <!-- Подключаем JavaScript -->
-    <script src="script.js" defer></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        /* Небольшие inline-стили для гарантии */
+        body { background: #fff5f0; }
+        .test-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
+    <!-- Тестовая кнопка (можно удалить позже) -->
+    <button class="test-button" onclick="testJS()">Тест JS</button>
+    
     <div class="container">
-        <header class="header">
-            <h1 class="logo">🍸 SHOWBARMENOV</h1>
-            <p class="subtitle">Профессиональный подбор коктейлей</p>
-        </header>
-        
-        <main>
-            <section id="startScreen">
-                <h2>🎯 Персональный подбор за 3 минуты</h2>
-                <button class="start-btn" onclick="startQuiz()">🚀 НАЧАТЬ ПОДБОР</button>
-            </section>
+        <!-- Экран приветствия -->
+        <div class="screen active" id="startScreen">
+            <div class="header">
+                <div class="logo">🍸 SHOWBARMENOV</div>
+                <div class="subtitle">Профессиональный подбор коктейлей</div>
+            </div>
             
-            <section id="quizScreen" style="display: none;">
-                <div class="progress">Вопрос <span id="currentQ">1</span> из 3</div>
-                <h2 id="questionText">Вопрос будет здесь</h2>
-                <div id="options" class="options-grid"></div>
-            </section>
-            
-            <section id="resultScreen" style="display: none;">
-                <h2>🎉 Ваша подборка готова!</h2>
-                <div id="resultContent"></div>
-                <button class="contact-btn" onclick="sendToBot()">📞 Получить расчет</button>
-            </section>
-        </main>
+            <div class="welcome-card">
+                <h2>🎯 Найдем идеальные коктейли для вашего мероприятия!</h2>
+                <p>Ответьте на несколько вопросов и получите персональную подборку</p>
+                
+                <div class="features">
+                    <div class="feature">✅ Алкогольные и безалкогольные</div>
+                    <div class="feature">✅ От классики до экзотики</div>
+                    <div class="feature">✅ Цены от 150 до 1000 руб.</div>
+                    <div class="feature">✅ Профессиональные бармены</div>
+                </div>
+                
+                <button class="start-btn" onclick="startQuiz()">
+                    🚀 НАЧАТЬ ПОДБОР
+                </button>
+                
+                <div class="contact-info">
+                    📞 Контакты: +7 (909) 592-13-16
+                </div>
+            </div>
+        </div>
         
-        <footer>
-            <p>📞 Контакты: +7 (909) 592-13-16</p>
-        </footer>
+        <!-- Экран квиза -->
+        <div class="screen" id="quizScreen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="question-card">
+                <h2 class="question-title" id="questionText">Вопрос будет здесь</h2>
+                <div class="options-grid" id="optionsContainer">
+                    <!-- Кнопки опций будут генерироваться через JS -->
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <div class="progress-text" id="progressText">Вопрос 1 из 2</div>
+                <button class="back-btn" onclick="prevQuestion()" id="backBtn" style="display: none;">⬅ Назад</button>
+            </div>
+        </div>
+        
+        <!-- Экран результатов -->
+        <div class="screen" id="resultScreen">
+            <div class="result-header">
+                <h2>🎉 Ваша подборка коктейлей!</h2>
+                <div class="result-subtitle" id="resultCategory"></div>
+            </div>
+            
+            <div class="cocktail-list" id="cocktailResults">
+                <!-- Результаты будут генерироваться через JS -->
+            </div>
+            
+            <div class="action-buttons">
+                <button class="order-btn" onclick="sendToBot()">
+                    📞 Заказать эти коктейли
+                </button>
+                <button class="restart-btn" onclick="restartQuiz()">
+                    🔄 Подобрать другие
+                </button>
+            </div>
+            
+            <div class="contact-card">
+                <h3>💎 SHOWBARMENOV</h3>
+                <p>Профессиональный барный кейтеринг</p>
+                <div class="contact-details">
+                    <div>📞 +7 (909) 592-13-16</div>
+                    <div>🎪 Свадьбы, корпоративы, мероприятия</div>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <script>
+        // Тестовая функция для проверки JS
+        function testJS() {
+            alert('✅ JavaScript работает корректно!');
+            console.log('Тестовая кнопка работает');
+        }
+        
+        // Проверка что скрипт загрузится
+        console.log('✅ HTML загружен, ожидаем script.js');
+    </script>
+    
+    <!-- Подключаем основной скрипт ПОСЛЕ HTML -->
+    <script src="script.js"></script>
 </body>
 </html>
