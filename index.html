@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍸 SHOWBARMENOV - Подбор коктейлей</title>
+    <!-- Подключаем CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем JavaScript -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">🍸 SHOWBARMENOV</h1>
+            <p class="subtitle">Профессиональный подбор коктейлей</p>
+        </header>
+        
+        <main>
+            <section id="startScreen">
+                <h2>🎯 Персональный подбор за 3 минуты</h2>
+                <button class="start-btn" onclick="startQuiz()">🚀 НАЧАТЬ ПОДБОР</button>
+            </section>
+            
+            <section id="quizScreen" style="display: none;">
+                <div class="progress">Вопрос <span id="currentQ">1</span> из 3</div>
+                <h2 id="questionText">Вопрос будет здесь</h2>
+                <div id="options" class="options-grid"></div>
+            </section>
+            
+            <section id="resultScreen" style="display: none;">
+                <h2>🎉 Ваша подборка готова!</h2>
+                <div id="resultContent"></div>
+                <button class="contact-btn" onclick="sendToBot()">📞 Получить расчет</button>
+            </section>
+        </main>
+        
+        <footer>
+            <p>📞 Контакты: +7 (909) 592-13-16</p>
+        </footer>
+    </div>
+</body>
+</html>
