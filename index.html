@@ -9,24 +9,9 @@
     <style>
         /* Небольшие inline-стили для гарантии */
         body { background: #fff5f0; }
-        .test-button {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 10px 15px;
-            background: #ff6b35;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 1000;
-            font-weight: 500;
-        }
     </style>
 </head>
 <body>
-    <!-- Тестовая кнопка (можно удалить позже) -->
-    <button class="test-button" onclick="testJS()">Тест JS</button>
     
     <div class="container">
         <!-- Экран приветствия -->
@@ -106,17 +91,6 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        // Тестовая функция для проверки JS
-        function testJS() {
-            alert('✅ JavaScript работает корректно!');
-            console.log('Тестовая кнопка работает');
-        }
-        
-        // Проверка что скрипт загрузится
-        console.log('✅ HTML загружен, ожидаем script.js');
-    </script>
     
     <!-- Подключаем основной скрипт ПОСЛЕ HTML -->
     <script src="script.js"></script>
