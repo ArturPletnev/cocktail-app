@@ -345,33 +345,12 @@ function displayCocktails() {
     });
 }
 
-// 9. ОТПРАВИТЬ РЕЗУЛЬТАТЫ БОТУ / ПОЗВОНИТЬ
+// 9. ПОЗВОНИТЬ ПО КНОПКЕ "ЗАКАЗАТЬ"
 const CONTACT_PHONE = '+79095921316';
 
-function sendToBot() {
-    const results = {
-        action: 'cocktail_selection',
-        answers: quizState.answers,
-        timestamp: new Date().toISOString(),
-        contact: '+7 (909) 592-13-16'
-    };
-
-    console.log('📤 Отправка результатов боту:', results);
-
-    // telegram-web-app.js подключён всегда (см. index.html), поэтому
-    // window.Telegram.WebApp существует и вне Telegram -- но там sendData()/close()
-    // молча ничего не делают. initData пустая строка вне настоящего Telegram-клиента,
-    // это и используем, чтобы отличить реальный запуск в Telegram от обычного браузера.
-    const inRealTelegram = Boolean(window.Telegram?.WebApp?.initData);
-
-    if (inRealTelegram) {
-        Telegram.WebApp.sendData(JSON.stringify(results));
-        Telegram.WebApp.close();
-    } else {
-        // Вне Telegram кнопка "📞 Заказать" должна реально звонить
-        console.log('Вне Telegram: звоним напрямую', results);
-        window.location.href = `tel:${CONTACT_PHONE}`;
-    }
+function callUs() {
+    console.log('📞 Звоним:', quizState.answers);
+    window.location.href = `tel:${CONTACT_PHONE}`;
 }
 
 // 10. ПЕРЕЗАПУСТИТЬ КВИЗ
@@ -383,27 +362,7 @@ function restartQuiz() {
 // ========== ИНИЦИАЛИЗАЦИЯ ==========
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ DOM загружен, инициализация...');
-    
-    // Проверяем что функции доступны
     console.log('Функция startQuiz:', typeof startQuiz);
-    console.log('Функция sendToBot:', typeof sendToBot);
-    
-    // Инициализация Telegram Web App для разработки
-    if (!window.Telegram?.WebApp) {
-        window.Telegram = {
-            WebApp: {
-                expand: () => console.log('[DEV] Expanded'),
-                sendData: (data) => {
-                    console.log('[DEV] Data to bot:', JSON.parse(data));
-                    alert('[DEV] Данные отправлены боту!');
-                },
-                close: () => console.log('[DEV] Closed'),
-                enableClosingConfirmation: () => {},
-                isExpanded: true
-            }
-        };
-        console.log('[DEV] Режим разработки включен');
-    }
-    
+    console.log('Функция callUs:', typeof callUs);
     console.log('✅ Инициализация завершена');
 });
