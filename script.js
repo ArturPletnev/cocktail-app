@@ -345,7 +345,9 @@ function displayCocktails() {
     });
 }
 
-// 9. ОТПРАВИТЬ РЕЗУЛЬТАТЫ БОТУ
+// 9. ОТПРАВИТЬ РЕЗУЛЬТАТЫ БОТУ / ПОЗВОНИТЬ
+const CONTACT_PHONE = '+79095921316';
+
 function sendToBot() {
     const results = {
         action: 'cocktail_selection',
@@ -353,17 +355,22 @@ function sendToBot() {
         timestamp: new Date().toISOString(),
         contact: '+7 (909) 592-13-16'
     };
-    
+
     console.log('📤 Отправка результатов боту:', results);
-    
-    // Telegram Web App
-    if (window.Telegram?.WebApp) {
+
+    // telegram-web-app.js подключён всегда (см. index.html), поэтому
+    // window.Telegram.WebApp существует и вне Telegram -- но там sendData()/close()
+    // молча ничего не делают. initData пустая строка вне настоящего Telegram-клиента,
+    // это и используем, чтобы отличить реальный запуск в Telegram от обычного браузера.
+    const inRealTelegram = Boolean(window.Telegram?.WebApp?.initData);
+
+    if (inRealTelegram) {
         Telegram.WebApp.sendData(JSON.stringify(results));
         Telegram.WebApp.close();
     } else {
-        // Режим разработки
-        alert('✅ Заявка отправлена! Наш бармен свяжется с вами.\n📞 +7 (909) 592-13-16');
-        console.log('Режим разработки: данные для бота:', results);
+        // Вне Telegram кнопка "📞 Заказать" должна реально звонить
+        console.log('Вне Telegram: звоним напрямую', results);
+        window.location.href = `tel:${CONTACT_PHONE}`;
     }
 }
 
