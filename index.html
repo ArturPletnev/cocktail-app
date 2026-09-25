@@ -3,93 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍸 SHOWBARMENOV - Подбор коктейлей</title>
+    <title>Show Bar — подбор коктейлей</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Небольшие inline-стили для гарантии */
-        body { background: #fff5f0; }
-    </style>
 </head>
 <body>
-    
+
     <div class="container">
         <!-- Экран приветствия -->
         <div class="screen active" id="startScreen">
             <div class="header">
-                <div class="logo">🍸 SHOWBARMENOV</div>
-                <div class="subtitle">Профессиональный подбор коктейлей</div>
+                <img class="logo-img" src="images/logo.png" alt="Show Bar">
+                <div class="subtitle">Подбор коктейлей для вашего мероприятия</div>
             </div>
-            
+
             <div class="welcome-card">
-                <h2>🎯 Найдем идеальные коктейли для вашего мероприятия!</h2>
-                <p>Ответьте на несколько вопросов и получите персональную подборку</p>
-                
+                <h2>Найдём коктейли под ваше мероприятие</h2>
+                <p>Пара вопросов — и вы увидите подходящую подборку с ценами</p>
+
                 <div class="features">
-                    <div class="feature">✅ Алкогольные и безалкогольные</div>
-                    <div class="feature">✅ От классики до экзотики</div>
-                    <div class="feature">✅ Профессиональные бармены</div>
+                    <div class="feature">Алкогольные и безалкогольные</div>
+                    <div class="feature">От классики до экзотики</div>
+                    <div class="feature">Работа профессиональных барменов</div>
                 </div>
-                
+
                 <button class="start-btn" onclick="startQuiz()">
-                    🚀 НАЧАТЬ ПОДБОР
+                    Начать подбор
                 </button>
-                
+
                 <div class="contact-info">
-                    📞 Контакты: +7 (909) 592-13-16
+                    Телефон: +7 (909) 592-13-16
                 </div>
             </div>
         </div>
-        
+
         <!-- Экран квиза -->
         <div class="screen" id="quizScreen">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            
+
             <div class="question-card">
                 <h2 class="question-title" id="questionText">Вопрос будет здесь</h2>
                 <div class="options-grid" id="optionsContainer">
                     <!-- Кнопки опций будут генерироваться через JS -->
                 </div>
             </div>
-            
+
             <div class="navigation">
                 <div class="progress-text" id="progressText">Вопрос 1 из 2</div>
-                <button class="back-btn" onclick="prevQuestion()" id="backBtn" style="display: none;">⬅ Назад</button>
+                <button class="back-btn" onclick="prevQuestion()" id="backBtn" style="display: none;">Назад</button>
             </div>
         </div>
-        
+
         <!-- Экран результатов -->
         <div class="screen" id="resultScreen">
             <div class="result-header">
-                <h2>🎉 Ваша подборка коктейлей!</h2>
+                <h2>Ваша подборка коктейлей</h2>
                 <div class="result-subtitle" id="resultCategory"></div>
             </div>
-            
+
             <div class="cocktail-list" id="cocktailResults">
                 <!-- Результаты будут генерироваться через JS -->
             </div>
-            
+
             <div class="action-buttons">
                 <button class="order-btn" onclick="callUs()">
-                    📞 Заказать эти коктейли
+                    Заказать эти коктейли
                 </button>
                 <button class="restart-btn" onclick="restartQuiz()">
-                    🔄 Подобрать другие
+                    Подобрать другие
                 </button>
             </div>
-            
+
             <div class="contact-card">
-                <h3>💎 SHOWBARMENOV</h3>
-                <p>Профессиональный барный кейтеринг</p>
+                <h3>Show Bar</h3>
+                <p>Бармен-шоу и выездной коктейльный бар</p>
                 <div class="contact-details">
-                    <div>📞 +7 (909) 592-13-16</div>
-                    <div>🎪 Свадьбы, корпоративы, мероприятия</div>
+                    <div>+7 (909) 592-13-16</div>
+                    <div>Свадьбы, корпоративы, мероприятия</div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Подключаем основной скрипт ПОСЛЕ HTML -->
     <script src="script.js"></script>
 </body>
